@@ -30,10 +30,9 @@ while not os.path.isfile(here+'/STOP'):
    T2.append( t2 )
    twrite = time()
    #f = open(HOME+'/.temp.dat','w')
-   f = open(fname,'w')
-   for x,t1,t2 in zip(X[-N:],T1[-N:],T2[-N:]):
-      f.write(str(x)+'   '+str(t1)+'   '+str(t2)+'\n')
-   f.close()
+   with open(fname,'w') as f:
+      for x,t1,t2 in zip(X[-N:],T1[-N:],T2[-N:]):
+         f.write(str(x)+'   '+str(t1)+'   '+str(t2)+'\n')
    twrite = time()-twrite
    sleep(max([t0-twrite,0]))
    if len(X) > 7*N: X,T1,T2 = X[-N:],T1[-N:],T2[-N:]
